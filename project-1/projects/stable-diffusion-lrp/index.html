@@ -89,13 +89,8 @@
                         <p>See how each word in your prompt contributes to different parts of the generated image</p>
                     </div>
                     <div class="feature-card">
-                        <h4>Interactive Heatmaps</h4>
-                        <p>Hover over prompt tokens to highlight relevant regions in the image with color-coded heatmaps
-                        </p>
-                    </div>
-                    <div class="feature-card">
                         <h4>Layer-by-Layer Analysis</h4>
-                        <p>Explore how relevance propagates through different layers of the diffusion model</p>
+                        <p>Using the timeline, explore how relevance propagates through different layers of the diffusion model</p>
                     </div>
                     <div class="feature-card">
                         <h4>Prompt Optimization Tools</h4>
@@ -115,6 +110,7 @@
                     <li>Backpropagation of relevance scores through cross-attention layers</li>
                     <li>Efficient batching to compute relevance maps without excessive memory overhead</li>
                     <li>Integration with CLIP text encoder to map relevance back to original prompt tokens</li>
+                    <li>Finding a way to manage compute resources efficiently: (one generation cost 200+ gigabytes of memory on the gpu which I ended up offloading to the disk)</li>
                 </ul>
 
                 <h3>Web Application Stack</h3>
@@ -125,41 +121,22 @@
                     <li><strong>Frontend:</strong> Next.js 13+ with TypeScript for type safety and performance</li>
                     <li><strong>Visualization:</strong> Canvas API and D3.js for rendering heatmaps and interactive
                         elements</li>
-                    <li><strong>API Communication:</strong> WebSocket connection for real-time relevance score streaming
-                    </li>
                     <li><strong>State Management:</strong> React hooks and context for managing complex visualization
                         state</li>
                 </ul>
             </div>
 
             <div slot="results">
-                <div class="stats-grid">
-                    <div class="stat">
-                        <div class="stat-value">35</div>
-                        <div class="stat-label">Study Participants</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">92%</div>
-                        <div class="stat-label">Found Tool Accessible</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-value">4.6/5</div>
-                        <div class="stat-label">Effectiveness Rating</div>
-                    </div>
-                </div>
-
                 <p>
                     The project was validated through a comprehensive user study with 35 participants, demonstrating:
                 </p>
                 <ul>
-                    <li><strong>High Accessibility:</strong> 92% of participants found the visualization tool intuitive
-                        and easy to use</li>
+                    <li><strong>High Accessibility:</strong> 92% of participants found the visualization tool intuitive and easy to use</li>
                     <li><strong>Effective Understanding:</strong> Users showed significantly improved understanding of
                         how their prompts influenced generated images</li>
                     <li><strong>Improved Prompt Crafting:</strong> Participants were able to refine their prompts more
                         effectively after seeing relevance visualizations</li>
-                    <li><strong>Academic Recognition:</strong> Successfully presented at Luxembourg Eurovis, receiving
-                        positive feedback from the research community</li>
+                    <li><strong>Academic Recognition:</strong> Successfully presented at Luxembourg Eurovis, receiving positive feedback from the research community</li>
                 </ul>
 
                 <div class="highlight-box">
