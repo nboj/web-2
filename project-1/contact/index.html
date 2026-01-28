@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Contact</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sril4kxilfvy47j16cr9zwb07vp4j8+lh7qkqnuqkuiavnwlzen8te5ybujzqjlb" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fkyoeforcglyvwx9hj09jcyn3nv7wipvlz7yywjrwvcxk/bmnvdxm+d2scqbitxi"
+        crossorigin="anonymous"></script>
+    <script src="../components/navbar.js" type="module"></script>
+    <script src="../components/footer.js" type="module"></script>
+    <link href="../styles.css" rel="stylesheet">
+    <link href="./styles.css" rel="stylesheet">
+    </link>
+</head>
+
+<body>
+    <main>
+        <portfolio-navbar></portfolio-navbar>
+
+        <div class="contact-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">Let's Connect</h1>
+                <p class="hero-subtitle">
+                    Have a project in mind? I'd love to hear from you.
+                </p>
+            </div>
+            <div class="floating-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+            </div>
+        </div>
+
+        <div class="form-wrapper">
+            <form class="contact-form" id="contactForm">
+                <div class="form-header">
+                    <h2>Send me a message</h2>
+                    <p>
+                        Fill out the form below and I'll get back to you as soon as
+                        possible.
+                    </p>
+                </div>
+
+                <div class="input-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required />
+                    <span class="input-focus-border"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required />
+                    <span class="input-focus-border"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Project Inquiry" />
+                    <span class="input-focus-border"></span>
+                </div>
+
+                <div class="input-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Tell me about your project..."
+                        required></textarea>
+                    <span class="input-focus-border"></span>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <span class="btn-text">Send Message</span>
+                    <span class="btn-icon">→</span>
+                </button>
+
+                <div class="form-status" id="formStatus"></div>
+            </form>
+
+            <div class="contact-info">
+                <div class="info-card">
+                    <div class="info-icon">📧</div>
+                    <h3>Email</h3>
+                    <a href="mailto:christian.auman@outlook.com">christian.auman@outlook.com</a>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">💼</div>
+                    <h3>LinkedIn</h3>
+                    <a href="https://www.linkedin.com/in/christian-auman-a9537b203" target="_blank">Connect with me</a>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">⚡</div>
+                    <h3>Response Time</h3>
+                    <p>Usually within 24 hours</p>
+                </div>
+            </div>
+        </div>
+
+        <portfolio-footer></portfolio-footer>
+    </main>
+
+    <script>
+        document
+            .getElementById("contactForm")
+            .addEventListener("submit", function (e) {
+                e.preventDefault();
+                const button = this.querySelector(".submit-btn");
+                const status = document.getElementById("formStatus");
+                button.classList.add("loading");
+                button.disabled = true;
+                setTimeout(() => {
+                    button.classList.remove("loading");
+                    button.classList.add("success");
+                    status.innerHTML =
+                        '<div class="success-message">✓ Message sent successfully!</div>';
+                    setTimeout(() => {
+                        this.reset();
+                        button.classList.remove("success");
+                        button.disabled = false;
+                        status.innerHTML = "";
+                    }, 3000);
+                }, 1500);
+            });
+        document.querySelectorAll("input, textarea").forEach((input) => {
+            input.addEventListener("focus", function () {
+                this.parentElement.classList.add("focused");
+            });
+            input.addEventListener("blur", function () {
+                if (!this.value) {
+                    this.parentElement.classList.remove("focused");
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

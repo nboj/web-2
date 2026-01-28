@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Prompt Studio - Christian Auman</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../components/navbar.js" type="module"></script>
+    <script src="../../components/footer.js" type="module"></script>
+    <script src="../../components/project-template.js" type="module"></script>
+    <link href="../../styles.css" rel="stylesheet"></link>
+  </head>
+  <body>
+    <main>
+      <portfolio-navbar></portfolio-navbar>
+      
+      <project-template
+        title="Prompt Studio"
+        subtitle="Diffusion Attribution Attention Maps for Text-to-Image Understanding"
+        image="../../images/prompt-studio.png"
+        tags="Python, Rust, PyTorch, Next.js, TypeScript, DAAM"
+        code-link="https://github.com/nboj/research">
+        
+        <div slot="overview">
+          <p>
+            Prompt Studio extends my previous research on explainable AI for text-to-image generation by implementing 
+            Diffusion Attribution Attention Maps (DAAM). This tool provides deeper insights into how diffusion models 
+            understand the relationship between text prompts and generated images.
+          </p>
+          <p>
+            By visualizing attention patterns throughout the diffusion process, Prompt Studio helps users understand 
+            not just which words matter, but <em>when</em> and <em>how</em> they influence the image generation at 
+            different timesteps.
+          </p>
+        </div>
+
+        <div slot="challenge">
+          <p>
+            While my previous LRP implementation provided valuable insights into token relevance, it had limitations:
+          </p>
+          <ul>
+            <li>Relevance scores were computed only for the final output, missing the temporal dynamics of diffusion</li>
+            <li>The relationship between text tokens and spatial image regions wasn't explicit enough</li>
+            <li>Users couldn't see how attention patterns evolved throughout the denoising process</li>
+            <li>Performance bottlenecks in Python made real-time exploration difficult for complex prompts</li>
+          </ul>
+        </div>
+
+        <div slot="solution">
+          <p>
+            Prompt Studio addresses these challenges through a hybrid Rust/Python architecture and advanced attention mapping:
+          </p>
+          <ul>
+            <li><strong>DAAM Integration:</strong> Implemented Diffusion Attribution Attention Maps to track how attention to each token changes across diffusion timesteps</li>
+            <li><strong>Rust Performance Layer:</strong> Built critical computation paths in Rust for 10x faster attention map generation</li>
+            <li><strong>Temporal Visualization:</strong> Created interactive timeline controls to scrub through the diffusion process and see attention evolution</li>
+            <li><strong>Enhanced Web Interface:</strong> Upgraded the Next.js frontend with advanced visualization components for multi-dimensional attention data</li>
+          </ul>
+        </div>
+
+        <div slot="features">
+          <div class="feature-grid">
+            <div class="feature-card">
+              <h4>Timestep Scrubbing</h4>
+              <p>Navigate through the diffusion process to see how attention patterns change over time</p>
+            </div>
+            <div class="feature-card">
+              <h4>Spatial Attention Maps</h4>
+              <p>Visualize exactly which image regions each text token influences at any timestep</p>
+            </div>
+            <div class="feature-card">
+              <h4>Multi-Token Analysis</h4>
+              <p>Compare attention patterns across multiple tokens simultaneously with layered heatmaps</p>
+            </div>
+            <div class="feature-card">
+              <h4>Export & Share</h4>
+              <p>Save attention visualizations and share findings with researchers or collaborators</p>
+            </div>
+            <div class="feature-card">
+              <h4>Rust-Powered Performance</h4>
+              <p>Real-time computation of attention maps even for complex, multi-object prompts</p>
+            </div>
+            <div class="feature-card">
+              <h4>Token Relationship Graph</h4>
+              <p>Understand how tokens interact and influence each other during generation</p>
+            </div>
+          </div>
+        </div>
+
+        <div slot="technical">
+          <h3>Hybrid Rust/Python Architecture</h3>
+          <p>
+            To achieve real-time performance, Prompt Studio uses a carefully designed hybrid architecture:
+          </p>
+          <ul>
+            <li><strong>Rust Core:</strong> Attention map aggregation, spatial transformations, and data serialization implemented in Rust</li>
+            <li><strong>Python Interface:</strong> PyO3 bindings to integrate Rust modules seamlessly with PyTorch</li>
+            <li><strong>Parallel Processing:</strong> Leveraged Rust's Rayon library for parallel attention computation across timesteps</li>
+            <li><strong>Memory Optimization:</strong> Zero-copy data sharing between Rust and Python using PyTorch's tensor API</li>
+          </ul>
+
+          <h3>DAAM Implementation</h3>
+          <p>
+            The Diffusion Attribution Attention Maps implementation required:
+          </p>
+          <ul>
+            <li>Hooking into Stable Diffusion's cross-attention layers at each timestep</li>
+            <li>Accumulating attention weights across multiple attention heads</li>
+            <li>Upsampling and aligning attention maps to match image resolution</li>
+            <li>Normalizing attention scores across timesteps for fair comparison</li>
+          </ul>
+
+          <h3>Advanced Visualization Pipeline</h3>
+          <p>
+            The Next.js frontend handles complex multi-dimensional data:
+          </p>
+          <ul>
+            <li><strong>WebGL Rendering:</strong> GPU-accelerated heatmap rendering for smooth scrubbing</li>
+            <li><strong>Custom Shaders:</strong> Implemented color mapping and blending modes for attention overlays</li>
+            <li><strong>Responsive Data Streaming:</strong> Progressive loading of attention data for large prompts</li>
+            <li><strong>Interactive Timeline:</strong> Custom-built timeline component with keyframe support</li>
+          </ul>
+        </div>
+
+        <div slot="results">
+          <div class="stats-grid">
+            <div class="stat">
+              <div class="stat-value">10x</div>
+              <div class="stat-label">Faster Computation</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">50+</div>
+              <div class="stat-label">Timesteps Visualized</div>
+            </div>
+            <div class="stat">
+              <div class="stat-value">60fps</div>
+              <div class="stat-label">Smooth Scrubbing</div>
+            </div>
+          </div>
+          
+          <p>
+            Prompt Studio represents a significant advancement in understanding text-to-image models:
+          </p>
+          <ul>
+            <li><strong>Performance Breakthrough:</strong> Rust optimization enabled 10x faster attention map computation compared to pure Python</li>
+            <li><strong>Temporal Insights:</strong> Users can now see how models "build up" concepts over the diffusion process</li>
+            <li><strong>Research Impact:</strong> The tool has been used to discover interesting patterns in how models prioritize adjectives vs. nouns at different timesteps</li>
+            <li><strong>Real-time Exploration:</strong> Achieved 60fps timeline scrubbing even with complex multi-object prompts</li>
+          </ul>
+
+          <div class="highlight-box">
+            <h3>Novel Discoveries</h3>
+            <p>
+              Using Prompt Studio, we discovered that Stable Diffusion tends to focus on nouns (objects) during early 
+              timesteps and shifts attention to adjectives (properties) in later timesteps. This insight can help users 
+              structure prompts more effectively by placing critical descriptors appropriately.
+            </p>
+          </div>
+        </div>
+
+        <div slot="">
+          <div class="section">
+            <h2>Future Directions</h2>
+            <p>
+              Planned enhancements for Prompt Studio include:
+            </p>
+            <ul>
+              <li>Support for analyzing video diffusion models frame-by-frame</li>
+              <li>Comparative visualization showing attention differences between model versions</li>
+              <li>AI-powered prompt suggestions based on attention pattern analysis</li>
+              <li>Integration with other explainability techniques like GradCAM and SHAP</li>
+            </ul>
+          </div>
+        </div>
+      </project-template>
+
+      <portfolio-footer></portfolio-footer>
+    </main>
+  </body>
+</html>

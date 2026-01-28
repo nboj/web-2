@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Christian Auman</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="components/navbar.js" type="module"></script>
+    <script src="components/footer.js" type="module"></script>
+    <script src="components/projects.js" type="module"></script>
+    <link href="styles.css" rel="stylesheet">
+    </link>
+    <script src="../../components/project-template.js" type="module"></script>
+</head>
+
+<body>
+    <main>
+        <portfolio-navbar></portfolio-navbar>
+
+        <project-template title="Integrating LRP into Stable Diffusion"
+            subtitle="Presented at Luxembourg Eurovis - Making AI Image Generation More Interpretable"
+            image="../../images/stable-diffusion-lrp.png"
+            tags="Python, PyTorch, Next.js, TypeScript, LRP, Stable Diffusion"
+            code-link="https://github.com/nboj/sd-lrp-research/tree/main/webapp">
+
+            <div slot="overview">
+                <p>
+                    This research project was presented at Luxembourg Eurovis, focusing on integrating Layer-wise
+                    Relevance Propagation (LRP)
+                    with Stable Diffusion to create a more interpretable AI image generation system. The project aims to
+                    demystify how
+                    text-to-image models understand and process prompts by assigning relevance scores to both textual
+                    and visual elements.
+                </p>
+                <p>
+                    By combining advanced explainable AI techniques with state-of-the-art generative models, we created
+                    an interactive
+                    web-based visualization tool that allows users to understand which parts of their prompts have the
+                    most influence
+                    on the generated images.
+                </p>
+            </div>
+
+            <div slot="challenge">
+                <p>
+                    Stable Diffusion and other text-to-image models are powerful but operate as "black boxes" - users
+                    provide a text
+                    prompt and receive an image, but have little understanding of how the model interprets their input.
+                    This lack of
+                    transparency creates several challenges:
+                </p>
+                <ul>
+                    <li>Users struggle to craft effective prompts without understanding what the model "pays attention
+                        to"</li>
+                    <li>It's difficult to debug why certain prompts don't produce expected results</li>
+                    <li>There's no clear way to see how different words in a prompt contribute to the final image</li>
+                    <li>Existing visualization tools for diffusion models lack intuitive, interactive interfaces</li>
+                </ul>
+            </div>
+
+            <div slot="solution">
+                <p>
+                    We developed a methodology that integrates Layer-wise Relevance Propagation (LRP) - an explainable
+                    AI technique -
+                    with Stable Diffusion's architecture. This integration allows us to trace back through the model's
+                    layers and
+                    assign relevance scores to each token in the input prompt and each region in the generated image.
+                </p>
+                <p>
+                    The solution consists of two main components:
+                </p>
+                <ul>
+                    <li><strong>Backend LRP Integration:</strong> Modified Stable Diffusion's PyTorch implementation to
+                        support LRP propagation through attention layers and convolutional blocks</li>
+                    <li><strong>Interactive Web Interface:</strong> Built with Next.js and TypeScript to visualize
+                        relevance scores in real-time, allowing users to hover over words and see their impact on the
+                        image</li>
+                </ul>
+            </div>
+
+            <div slot="features">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Real-time Relevance Visualization</h4>
+                        <p>See how each word in your prompt contributes to different parts of the generated image</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Interactive Heatmaps</h4>
+                        <p>Hover over prompt tokens to highlight relevant regions in the image with color-coded heatmaps
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Layer-by-Layer Analysis</h4>
+                        <p>Explore how relevance propagates through different layers of the diffusion model</p>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Prompt Optimization Tools</h4>
+                        <p>Understand which words are being ignored or overemphasized to refine your prompts</p>
+                    </div>
+                </div>
+            </div>
+
+            <div slot="technical">
+                <h3>LRP Implementation</h3>
+                <p>
+                    The Layer-wise Relevance Propagation implementation required deep modifications to the Stable
+                    Diffusion architecture:
+                </p>
+                <ul>
+                    <li>Custom LRP rules for attention mechanisms in the U-Net architecture</li>
+                    <li>Backpropagation of relevance scores through cross-attention layers</li>
+                    <li>Efficient batching to compute relevance maps without excessive memory overhead</li>
+                    <li>Integration with CLIP text encoder to map relevance back to original prompt tokens</li>
+                </ul>
+
+                <h3>Web Application Stack</h3>
+                <p>
+                    The interactive visualization tool was built using modern web technologies:
+                </p>
+                <ul>
+                    <li><strong>Frontend:</strong> Next.js 13+ with TypeScript for type safety and performance</li>
+                    <li><strong>Visualization:</strong> Canvas API and D3.js for rendering heatmaps and interactive
+                        elements</li>
+                    <li><strong>API Communication:</strong> WebSocket connection for real-time relevance score streaming
+                    </li>
+                    <li><strong>State Management:</strong> React hooks and context for managing complex visualization
+                        state</li>
+                </ul>
+            </div>
+
+            <div slot="results">
+                <div class="stats-grid">
+                    <div class="stat">
+                        <div class="stat-value">35</div>
+                        <div class="stat-label">Study Participants</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">92%</div>
+                        <div class="stat-label">Found Tool Accessible</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">4.6/5</div>
+                        <div class="stat-label">Effectiveness Rating</div>
+                    </div>
+                </div>
+
+                <p>
+                    The project was validated through a comprehensive user study with 35 participants, demonstrating:
+                </p>
+                <ul>
+                    <li><strong>High Accessibility:</strong> 92% of participants found the visualization tool intuitive
+                        and easy to use</li>
+                    <li><strong>Effective Understanding:</strong> Users showed significantly improved understanding of
+                        how their prompts influenced generated images</li>
+                    <li><strong>Improved Prompt Crafting:</strong> Participants were able to refine their prompts more
+                        effectively after seeing relevance visualizations</li>
+                    <li><strong>Academic Recognition:</strong> Successfully presented at Luxembourg Eurovis, receiving
+                        positive feedback from the research community</li>
+                </ul>
+
+                <div class="highlight-box">
+                    <h3>Key Takeaways</h3>
+                    <p>
+                        This research demonstrates that combining explainable AI techniques with generative models can
+                        significantly
+                        improve user understanding and control. The interactive visualization approach makes complex AI
+                        systems more
+                        transparent and accessible to both researchers and end users.
+                    </p>
+                </div>
+            </div>
+        </project-template>
+
+        <portfolio-footer></portfolio-footer>
+    </main>
+</body>
+
+</html>

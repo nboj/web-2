@@ -55,16 +55,19 @@ class Navbar extends HTMLElement {
 
   createLink(name, href, selected) {
     return `
-<li><a ${selected && "class='selected'"} href="${href}">${name}</a></li>
+<li><a ${selected && "class='selected'"} href="${import.meta.url}/../..${href}">${name}</a></li>
 `;
   }
 
   connectedCallback() {
-    const selected = this.getAttribute("current-href") ?? "";
     const links = [
       { name: "Home", href: "/" },
       { name: "Contact", href: "/contact" },
     ];
+    this.style.position = "sticky";
+    this.style.top = 0;
+    this.style.left = 0;
+    this.style.zIndex = 100;
     this.shadowRoot.innerHTML = `
 <nav>
   <div id="section-1">
@@ -77,7 +80,7 @@ class Navbar extends HTMLElement {
         this.createLink(
           link.name,
           link.href,
-          link.href.toLowerCase() == selected.toLowerCase(),
+          link.href.toLowerCase() == location.pathname.toLowerCase(),
         ),
       )
       .join("\n")}

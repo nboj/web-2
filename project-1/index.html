@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Test</title>
+    <title>Christian Auman</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -15,11 +16,26 @@
     ></script>
     <script src="components/navbar.js" type="module"></script>
     <script src="components/footer.js" type="module"></script>
+    <script src="components/projects.js" type="module"></script>
     <link href="styles.css" rel="stylesheet"></link>
   </head>
 
   <body>
-    <portfolio-navbar current-href="/"></portfolio-navbar>
-    <portfolio-footer></portfolio-footer>
+    <main>
+      <portfolio-navbar></portfolio-navbar>
+      <div class="info-container">
+        <div class="info-col">
+          <img src="images/portrait-of-christian.jpg" class="info-portrait" alt="My self portrait" title="My self portrait"/>
+        </div>
+        <div class="info-col">
+          <h1 class="title">Hi there 👋</h1>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ante sem, interdum a iaculis ac, vestibulum ac ex. Donec pharetra ex nec elit bibendum mollis. Nulla facilisi. Nulla congue hendrerit dui, vitae commodo magna vestibulum sed. Mauris in enim interdum, tristique dolor nec, maximus odio. Phasellus vitae ante vitae purus vulputate convallis vel eu felis. Nam gravida libero quis hendrerit cursus. 
+          </p>
+        </div>
+      </div>
+      <portfolio-projects></portfolio-projects>
+      <portfolio-footer></portfolio-footer>
+    </main>
   </body>
 </html>
